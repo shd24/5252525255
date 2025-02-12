@@ -1,35 +1,27 @@
 ﻿#include <iostream>
 #include <cmath>
-
-
 int main() {
-	setlocale(LC_ALL, "Russian");
-	double a = 2.8;
-	double b = -0.3;
-	double c = 4;
-	double x, y;
-	while (true) {
-		std::cout << "Введите значение x: ";
-		if (std::cin >> x) {
-			break;
-		}
-		else {
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Ошибка ввода. Пожалуйста, введите числовое значение." << std::endl;
-		}
-	}
-	if (x < 1.2) {
-		y = a * x * x + b * x + c;
+    setlocale(LC_ALL, "Russian");
+    double x;
+    std::cout << "Введите длину стороны большего квадрата: ";
+    std::cin >> x;
+    while (true) {
+        std::cout << "Введите значение x: ";
+        if (std::cin >> x) {
+            break;
+        }
+        else {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Ошибка ввода. Пожалуйста, введите числовое значение." << std::endl;
+        }
+    }
+    double ploshad_bol = x * x; 
+    double storon_mensh = x / sqrt(2); 
+    double ploshad_mensh = storon_mensh * storon_mensh; 
 
-	}
-	else if (x == 1.2) {
-		y = a / (x + sqrt(x * x + 1));
-	}
-	else {
-		y = (a + b * x) / sqrt(x * x + 1);
-	}
-	std::cout << "Результат y:" << y << std::endl;
+    double result = ploshad_bol - ploshad_mensh; 
 
-	return 0;
+    std::cout << "Площадь за вычетом вписанного квадрата: " << result << std::endl;
+    return 0;
 }
