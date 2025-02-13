@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-int main() {
+int main313() {
 	setlocale(LC_ALL, "Russian");
 	double a = 2.8;
 	double b = -0.3;
