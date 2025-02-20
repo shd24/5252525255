@@ -1,29 +1,26 @@
 #include <iostream>
-#include <cmath>
-#include <limits> 
+#include <cmath> 
+
 int main() {
     setlocale(LC_ALL, "Russian");
-    double x;
+    const int size = 10;
+    int arr[size];
+    std::cout << "Введите 10 целых чисел: ";
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+    }
+    int minAbs = abs(arr[0]);
+    int minIndex = 0;
 
-    while (true) {
-        std::cout << "Введите значение x: ";
-        if (std::cin >> x) {
-            break;
-        }
-        else {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Ошибка ввода. Пожалуйста, введите числовое значение." << std::endl;
+    for (int i = 1; i < size; ++i) {
+        int currentAbs = abs(arr[i]);
+        if (currentAbs < minAbs) {
+            minAbs = currentAbs;
+            minIndex = i;
         }
     }
-
-    double ploshad_bol = x * x;
-    double storon_mensh = x / sqrt(2);
-    double ploshad_mensh = storon_mensh * storon_mensh;
-
-    double result = ploshad_bol - ploshad_mensh;
-
-    std::cout << "Площадь за вычетом вписанного квадрата: " << result << std::endl;
+    std::cout << "Минимальный по модулю элемент: " << arr[minIndex] << std::endl;
+    std::cout << "Его индекс: " << minIndex << std::endl;
 
     return 0;
 }

@@ -1,35 +1,36 @@
 #include <iostream>
-#include <cmath>
-int main313() {
-	setlocale(LC_ALL, "Russian");
-	double a = 2.8;
-	double b = -0.3;
-	double c = 4;
-	double x, y;
-	while (true) {
-		std::cout << "Введите значение x: ";
-		if (std::cin >> x) {
-			break;
-		}
-		else {
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Ошибка ввода. Пожалуйста, введите числовое значение." << std::endl;
-		}
-	}
-	if (x < 1.2) {
-		y = a * x * x + b * x + c;
+#include <cstdlib>  
+#include <ctime>   
 
-	}
-	else if (x == 1.2) {
-		y = a / (x + sqrt(x * x + 1));
-	}
-	else {
-		y = (a + b * x) / sqrt(x * x + 1);
-	}
-	std::cout << "Результат y:" << y << std::endl;
+int main42() {
+    setlocale(LC_ALL, "Russian");
+    const int size = 10;
+    int A[size];
+    int product = 1;
+    int count = 0;
+    std::srand(std::time(0));
 
-	return 0;
+    for (int i = 0; i < size; ++i) {
+        A[i] = std::rand() % 101 - 50;
+    }
+    std::cout << "Массив A:";
+    for (int i = 0; i < size; ++i) {
+        std::cout << A[i] << " ";
+    }
+    std::cout << std::endl;
+
+    for (int i = 0; i < size; ++i) {
+        if (A[i] > 0 && A[i] % 3 == 0) {
+            product *= A[i];
+            count++;
+        }
+    }
+    if (count > 0) {
+        std::cout << "Произведение положительных элементов, кратных 3: " << product << std::endl;
+        std::cout << "Количество таких элементов: " << count << std::endl;
+    }
+    else {
+        std::cout << "В массиве нет положительных элементов, кратных 3." << std::endl;
+    }
+    return 0;
 }
-
-
