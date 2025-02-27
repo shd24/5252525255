@@ -1,36 +1,37 @@
 #include <iostream>
-#include <cstdlib>  
-#include <ctime>   
+#include <limits> 
+using namespace std;
 
-int main42() {
+int main() {
     setlocale(LC_ALL, "Russian");
     const int size = 10;
     int A[size];
-    int product = 1;
-    int count = 0;
-    std::srand(std::time(0));
-
+    int* ptr = A;
+    cout << "Введите 10 чисел: ";
     for (int i = 0; i < size; ++i) {
-        A[i] = std::rand() % 101 - 50;
-    }
-    std::cout << "Массив A:";
-    for (int i = 0; i < size; ++i) {
-        std::cout << A[i] << " ";
-    }
-    std::cout << std::endl;
-
-    for (int i = 0; i < size; ++i) {
-        if (A[i] > 0 && A[i] % 3 == 0) {
-            product *= A[i];
-            count++;
+        while (!(cin >> *(ptr + i))) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ошибка ввода. Пожалуйста, введите числовое значение: ";
         }
     }
+
+    int product = 1;
+    int count = 0;
+    for (int i = 0; i < size; ++i) {
+        if (*(ptr + i) > 0 && *(ptr + i) % 3 == 0) {
+            product *= *(ptr + i);
+            ++count;
+        }
+    }
+
     if (count > 0) {
-        std::cout << "Произведение положительных элементов, кратных 3: " << product << std::endl;
-        std::cout << "Количество таких элементов: " << count << std::endl;
+        cout << "Произведение положительных элементов, кратных 3: " << product << endl;
+        cout << "Количество таких элементов: " << count << endl;
     }
     else {
-        std::cout << "В массиве нет положительных элементов, кратных 3." << std::endl;
+        cout << "Нет положительных элементов, кратных 3." << endl;
     }
+
     return 0;
 }
